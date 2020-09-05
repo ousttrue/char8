@@ -1,0 +1,11 @@
+{
+    "C_Cpp.clang_format_style": "file",
+    "files.associations": {
+        "string_view": "cpp",
+        "*.tcc": "cpp",
+        "memory_resource": "cpp",
+        "fstream": "cpp",
+        "memory": "cpp"
+    },
+    "python.pythonPath": "/usr/bin/python3"
+}
