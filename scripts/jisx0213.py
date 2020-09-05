@@ -13,6 +13,7 @@ BMP = 65536
 def map(src: pathlib.Path, dst: pathlib.Path):
     from_unicode = {}
     max_unicode = 0
+    max_bmp = 0
     to_unicode = {}
     max_jis = 0
     for l in src.read_text().splitlines():
@@ -27,7 +28,10 @@ def map(src: pathlib.Path, dst: pathlib.Path):
             # 0x2477	U+304B+309A	# 	[2000]
             unicode = int(unicode[2:], 16)
 
-            if unicode>max_unicode and unicode < BMP:
+            if unicode < BMP:
+                if unicode>max_bmp:
+                    max_bmp = unicode
+            if unicode>max_unicode:
                 max_unicode = unicode
             jis = int(jis, 16)
             if jis>max_jis:
@@ -36,7 +40,8 @@ def map(src: pathlib.Path, dst: pathlib.Path):
             from_unicode[unicode] = (jis, name[2:])
             to_unicode[jis] = (unicode, name[2:])
         except:
-            pass      
+            pass    
+    print(f'max unicode: {hex(max_unicode)}')
 
     with dst.open('w') as f:
         f.write('''///
@@ -51,7 +56,7 @@ def map(src: pathlib.Path, dst: pathlib.Path):
         f.write(
             'const unsigned short unicode_to_jisx0213[] = {\n'
         )
-        for i in range(max_unicode+1):
+        for i in range(max_bmp+1):
             try:
                 v = from_unicode[i]
                 jis, name = v

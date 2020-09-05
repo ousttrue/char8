@@ -24,9 +24,13 @@ SJIS     (ISO-2022-JP)
     * [x] utf8: to unicode
     * [x] utf8: from unicode
     * [ ] utf8: codepoint iterator
+    * [ ] 
+* table
+    * [x] JISX0213 <=> BMP: U+0000~U+FFFF
+    * [ ] JISX0213 <=> SMP: U+10000~U+1FFFF
+    * [ ] JISX0213 <=> SIP: U+20000~U+2FFFF
 * [x] jis(JISX0213): to unicode
 * [x] jis(JISX0213): from unicode
-    * [x] JISX0213の変換テーブルにする
     * [x] sjis: to jis
     * [x] sjis: from jis
     * [ ] euc-jp: to jis

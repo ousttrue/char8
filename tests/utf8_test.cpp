@@ -29,6 +29,7 @@ TEST_CASE("utf8 codepoint", "[utf8]")
     }
 
     // codepoint take first codepoint
+    // BMP
     {
         c8::utf8::codepoint cp(u8"ab");
         REQUIRE(cp.codeunit_count() == 1);
@@ -44,7 +45,14 @@ TEST_CASE("utf8 codepoint", "[utf8]")
         REQUIRE(cp.data()[3] == 0);
     }
     {
+        // SMP
         c8::utf8::codepoint cp(u8"🐁🐃");
         REQUIRE(cp.codeunit_count() == 4);
     }
+    {
+        // SIP
+        c8::utf8::codepoint cp(u8"𠃍");
+        REQUIRE(cp.codeunit_count() == 4);
+    }
+    // TIP
 }
