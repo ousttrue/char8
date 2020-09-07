@@ -38,7 +38,13 @@ SJIS     (ISO-2022-JP)
     * [ ] iso-2022-jp: to jis
     * [ ] iso-2022-jp: from jis
 
-## map
+## data
+
+### JISX0213
 
 * http://x0213.org/codetable/jisx0213-2004-8bit-std.txt
 * http://www.unicode.org/Public/MAPPINGS/OBSOLETE/EASTASIA/JIS/JIS0208.TXT
+
+### Unicode blocks
+
+* https://www.unicode.org/Public/UNIDATA/Blocks.txt

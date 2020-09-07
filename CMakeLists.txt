@@ -18,6 +18,7 @@ add_executable(char8_test
     tests/main.cpp
     tests/utf8_test.cpp
     tests/sjis_test.cpp
+    tests/unicode_test.cpp
 )
 target_link_libraries(char8_test
 PRIVATE
