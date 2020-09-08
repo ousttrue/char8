@@ -24,7 +24,7 @@ enum class UnicodePlanes
     SSP,    // Supplement­ary Special-purpose Plane
     SPUA_A, // Supplement­ary Private Use Area-A
     SPUA_B, // Supplement­ary Private Use Area-B
-    NoBlock,
+    _End,
 };
 
 inline UnicodePlanes get_plane(char32_t unicode)
@@ -36,6 +36,12 @@ inline UnicodePlanes get_plane(char32_t unicode)
 
 inline UnicodeBlock search(const UnicodeBlock *begin, int n, char32_t unicode)
 {
+    static UnicodeBlock NoBlock = {
+        "No_block",
+        (uint32_t)-1,
+        (uint32_t)-1,
+    };
+
     auto half = n / 2;
     auto mid = begin + half;
     if (unicode >= mid->front & unicode <= mid->back)
@@ -45,10 +51,18 @@ inline UnicodeBlock search(const UnicodeBlock *begin, int n, char32_t unicode)
 
     if (unicode < mid->front)
     {
+        if (half == 0)
+        {
+            return NoBlock;
+        }
         return search(begin, half, unicode);
     }
     else if (unicode > mid->back)
     {
+        if (half == 0)
+        {
+            return NoBlock;
+        }
         return search(mid, n - half, unicode);
     }
 

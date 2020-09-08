@@ -39,7 +39,7 @@ def process(path: pathlib.Path, dst: pathlib.Path):
         #
         f.write('''
 enum class UnicodeBlocks {
-    UNKNOWN = -1,
+    NO_BLOCK = -1,
 ''')
         for b in blocks:
             name, begin, end = b
@@ -57,6 +57,9 @@ struct UnicodeBlock
     std::string name;
     uint32_t front;
     uint32_t back;
+
+    bool operator==(UnicodeBlocks block) const { return front == (uint32_t)block; }
+    bool operator!=(UnicodeBlocks block) const { return !(*this == block); }
 };
 static inline UnicodeBlock blocks[] = {
 ''')
