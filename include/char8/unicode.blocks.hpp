@@ -316,13 +316,13 @@ enum class UnicodeBlocks {
 
 };
 
-struct Range
+struct UnicodeBlock
 {
     std::string name;
     uint32_t front;
     uint32_t back;
 };
-static inline Range blocks[] = {
+static inline UnicodeBlock blocks[] = {
   {"Basic Latin", 0x0, 0x7f},
   {"Latin-1 Supplement", 0x80, 0xff},
   {"Latin Extended-A", 0x100, 0x17f},

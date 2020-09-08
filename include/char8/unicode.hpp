@@ -5,9 +5,36 @@
 namespace c8::unicode
 {
 
+enum class UnicodePlanes
+{
+    BMP, // Basic Multilingual Plane
+    SMP, // Supplementary Multilingual Plane
+    SIP, // Supplementary Ideographic Plane
+    TIP, // Tertiary Ideographic Plane
+    _4,
+    _5,
+    _6,
+    _7,
+    _8,
+    _9,
+    _A,
+    _B,
+    _C,
+    _D,
+    SSP,    // Supplement­ary Special-purpose Plane
+    SPUA_A, // Supplement­ary Private Use Area-A
+    SPUA_B, // Supplement­ary Private Use Area-B
+    NoBlock,
+};
+
+inline UnicodePlanes get_plane(char32_t unicode)
+{
+    return (UnicodePlanes)(unicode >> 16);
+}
+
 #include "unicode.blocks.hpp"
 
-inline Range search(const Range *begin, int n, char32_t unicode)
+inline UnicodeBlock search(const UnicodeBlock *begin, int n, char32_t unicode)
 {
     auto half = n / 2;
     auto mid = begin + half;
@@ -20,7 +47,7 @@ inline Range search(const Range *begin, int n, char32_t unicode)
     {
         return search(begin, half, unicode);
     }
-    else if (unicode> mid->back)
+    else if (unicode > mid->back)
     {
         return search(mid, n - half, unicode);
     }
@@ -29,7 +56,7 @@ inline Range search(const Range *begin, int n, char32_t unicode)
     return {};
 }
 
-inline Range get_block(char32_t unicode)
+inline UnicodeBlock get_block(char32_t unicode)
 {
     size_t count = std::extent<decltype(blocks)>::value;
     return search(blocks, count, unicode);

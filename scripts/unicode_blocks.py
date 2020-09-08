@@ -52,13 +52,13 @@ enum class UnicodeBlocks {
         # blocks
         #
         f.write('''
-struct Range
+struct UnicodeBlock
 {
     std::string name;
     uint32_t front;
     uint32_t back;
 };
-static inline Range blocks[] = {
+static inline UnicodeBlock blocks[] = {
 ''')
         for b in blocks:
             name, begin, end = b
