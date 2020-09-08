@@ -21,10 +21,10 @@ SJIS     (ISO-2022-JP)
 ## TODO
 
 * unicode
+    * [x] unicode: block list
     * [x] utf8: to unicode
     * [x] utf8: from unicode
     * [ ] utf8: codepoint iterator
-    * [ ] 
 * table
     * [x] JISX0213 <=> BMP: U+0000~U+FFFF
     * [ ] JISX0213 <=> SMP: U+10000~U+1FFFF
