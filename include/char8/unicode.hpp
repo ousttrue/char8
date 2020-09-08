@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <stdint.h>
+#include <assert.h>
 
 namespace c8::unicode
 {
