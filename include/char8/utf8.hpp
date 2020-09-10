@@ -68,11 +68,9 @@ struct codepoint
     {
     }
 
-    codepoint(const char8_t *src)
+    codepoint(std::basic_string_view<char8_t> src)
     {
-        if (!src)
-            return;
-        if (!*src)
+        if (src.empty())
             return;
         int size = codeunit_count_from_firstbyte(src[0]);
         auto b = data();
@@ -99,6 +97,11 @@ struct codepoint
     int codeunit_count() const
     {
         return codeunit_count_from_firstbyte(*data());
+    }
+
+    std::basic_string_view<char8_t> view()const
+    {
+        return std::basic_string_view<char8_t>(data(), codeunit_count());
     }
 
     char32_t to_unicode() const
